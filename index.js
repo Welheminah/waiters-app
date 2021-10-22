@@ -58,7 +58,7 @@ const shedule = coffeeShop(pool);
 
 app.get("/", async function(req, res){
     let name = await shedule.showWaiter();
-    console.log(name)
+    // console.log(name)
     res.render("index",
     {enteredName: name});
   });
@@ -68,7 +68,7 @@ app.get("/", async function(req, res){
 app.post("/waiter",async function(req, res){
     let input = req.body.waiterName;
     await shedule.waiterName(input);
-    console.log(await shedule.waiterName(input))
+    // console.log(await shedule.waiterName(input))
     res.redirect('/')
 });
 

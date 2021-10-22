@@ -4,13 +4,12 @@ module.exports = function coffeeShop(pool){
    async function waiterName(waiter){
     try {
         let name = waiter.trim().toUpperCase();
-        // await pool.query('INSERT INTO waiters(names)VALUES("$1")', [name])
-        var dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [name]);
-        if(dbName.rowCount === 0){
-            await pool.query('INSERT INTO waiters(name) VALUES($1)', [name])
-   }
-    } catch (error) {
-        
+        await pool.query('INSERT INTO waiters(names)VALUES("$1")', [name])
+//         var dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [name]);
+//         if(dbName.rowCount === 0){
+//             await pool.query('INSERT INTO waiters(name) VALUES($1)', [name])
+//    }
+    } catch (error) { 
     }
 }
 
