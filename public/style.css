@@ -1,0 +1,80 @@
+/* $font-primary: Thaoma;
+$font-title: Abril Fatface;
+$font-secondary: Roboto; */
+
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+/* font-family: 'Courgette', cursive; */
+
+
+body{
+    /* background-image: url("bread.jpeg"); */
+    background-color: black;
+    
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    /* color: pink; */
+}
+
+h1 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 100px;
+}
+
+p{
+    color: whitesmoke;
+    font-size: 22px;
+}
+
+input[type=text], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+
+input[type=submit] {
+    width: 100%;
+    background:linear-gradient(#999, #111);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button{
+    width: 25%;
+    background:linear-gradient(#999, #111);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* button:hover {
+    background-color: whitesmoke;
+  } */
+
+  
+  .theForm {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-size: 20px;
+  }
+
+.days{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-size: 20px;
+}
