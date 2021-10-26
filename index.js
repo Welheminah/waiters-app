@@ -57,35 +57,36 @@ const shedule = coffeeShop(pool);
 
 
 app.get("/", async function(req, res){
-    let name = await shedule.showWaiter();
-    // console.log(name)
+    let user = req.body.waiterName;
+    let name = await shedule.waiterName();
+    let hardCode = "Moipone";
+    // console.log(user)
     res.render("index",
-    {enteredName: name});
+    {enteredName: hardCode});
+    
   });
-
 
   
 app.post("/waiter",async function(req, res){
     let input = req.body.waiterName;
-    await shedule.waiterName(input);
-    // console.log(await shedule.waiterName(input))
+    let checkBoxes = req.body.days;
+    console.log(req.body.days);
+    
     res.redirect('/')
 });
 
-//this is the route for the admin
-app.get("/waiters/:username", function(req, res){
-    res.render("index");
+app.get("/waiters/:username",async function(req, res){
+    res.render("days");
   });
 
-//this route is for he waiters
-app.post("/waiters/:username", function(req, res){
-
-    res.redirect('/')
+app.post("/waiters/:username",async function(req, res){
+    let input = req.body.waiterName;
+    let checkBoxes = req.body.days;
+    // console.log(input)
+    await shedule.waiterName(input, checkBoxes);
+    
+    res.redirect('index')
 });
-
-app.get("/days", function(req, res){
-    res.render("index");
-  });
 
 const PORT = process.env.PORT || 3018;
 

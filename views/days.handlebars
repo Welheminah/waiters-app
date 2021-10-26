@@ -2,51 +2,55 @@
 <html lang="en">
 
 <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>Days Selection</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Selection</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 <div class="main2">
-<h1>Welcome *name* </h1>
-<p>Please select days that you will be able to work <br>Note: You can only select up to 3 days</p>
+<h1>Welcome, </h1>
+{{!-- <h3>{{#each enteredName}}
+      {{names}}
+     {{/each}}</h3> --}}
+     <h3>{{enteredName}}</h3>
+<p>Please select days that you will be able to work <br>Note:</p>
 </div>
 
 <div class="days">
-<form action="" method="get">
+<form action="/waiter" method="POST">
 <label class="container">Modays
-  <input type="checkbox" checked="checked">
+  <input type="checkbox" checked="checked" value="Monday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Tuesday
-  <input type="checkbox">
+  <input type="checkbox" value="Tuesday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Wednesday
-  <input type="checkbox">
+  <input type="checkbox" value="Wednesday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Thursday
-  <input type="checkbox">
+  <input type="checkbox" value="Thursday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Friday
-  <input type="checkbox">
+  <input type="checkbox" value="Friday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Saturday
-  <input type="checkbox">
+  <input type="checkbox" value="Saturday" name="days">
   <span class="checkmark"></span>
 </label>
 <label class="container">Sunday
-  <input type="checkbox">
+  <input type="checkbox" value="Sunday" name="days">
   <span class="checkmark"></span>
 </label>
 <br>
 
-<button>Submit</button>
+<button type="submit">Submit/Update</button>
 </form>
 </div>
 </body>

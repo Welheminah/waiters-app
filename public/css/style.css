@@ -78,3 +78,35 @@ input[type=submit] {
   padding: 20px;
   font-size: 20px;
 }
+
+.display{
+  color: #111;
+}
+
+input:checked {
+  height: 30px;
+  width: 30px;
+}
+
+.column {
+  float: left;
+  width: 14,2%;
+  padding: 10px;
+  height: 200px; 
+  box-sizing: border-box;
+ 
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}

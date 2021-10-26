@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
             be able to work.</p>
 
         <div class="theForm">
-            <form action="/waiter" method="POST">
+            <form action="/waiters/:username" method="POST">
 
                 <label for="fname">Employee's Name</label>
                 <input type="text" id="name" name="waiterName" placeholder="Your name..">
@@ -24,11 +25,10 @@
 
                 <button type="submit">Submit</button>
             </form><br>
-            <p class="display">
-                {{#each enteredName}}
-                <span>{{names}}</span>
-                {{/each}}
-            </p>
+            
+            <ul class="display">
+               
+            </ul>
         </div>
     </div>
 
