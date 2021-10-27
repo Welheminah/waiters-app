@@ -57,12 +57,12 @@ const shedule = coffeeShop(pool);
 
 
 app.get("/", async function(req, res){
-    let user = req.body.waiterName;
-    let name = await shedule.waiterName();
+    let user = req.params.name;
+    let name = await shedule.waiterName(user);
     let hardCode = "Moipone";
-    // console.log(user)
+    // console.log(name)
     res.render("index",
-    {enteredName: hardCode});
+    {enteredName: name});
     
   });
 
@@ -76,11 +76,16 @@ app.post("/waiter",async function(req, res){
 });
 
 app.get("/waiters/:username",async function(req, res){
-    res.render("days");
+    let user = req.params.name;
+    let name = await shedule.waiterName(user);
+    console.log(name)
+    res.render("days",
+    {theName: name});
+
   });
 
 app.post("/waiters/:username",async function(req, res){
-    let input = req.body.waiterName;
+    let input = req.params.waiterName;
     let checkBoxes = req.body.days;
     // console.log(input)
     await shedule.waiterName(input, checkBoxes);

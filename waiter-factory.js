@@ -7,25 +7,37 @@ module.exports = function coffeeShop(pool){
         // await pool.query('INSERT INTO waiters(names)VALUES($1)', [name])
         var dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [name]);
         if(dbName.rowCount === 0){
-            await pool.query('INSERT INTO waiters(names) VALUES($1)', [name])
+            // await pool.query('INSERT INTO waiters(names) VALUES($1)', [name])
+            console.log('You are not recognized');
+            return; 
+          
+   }
+   else {
+       return 'system recognizes you';
    }
     } catch (error) { 
         // console.log(error)
     }
 }
 
-   //try to display each waiter in the database
+   
    async function showWaiter(){
        let oneWaiter = await pool.query('SELECT *  FROM waiters')
-        
-       return oneWaiter;
+    
+      return oneWaiter.rowCount;
        
    }
 
-   //try to display all waiters in the database
-   async function showTheWaiters(){
-    let displayWaiter = await pool.query('SELECT *  FROM waiters WHERE names = $1')
+
+   async function showTheWaiters(waiter){
+    let displayWaiter = await pool.query('SELECT *  FROM waiters WHERE names = $1', [waiter])
+    // console.log(displayWaiter)
     return displayWaiter.rows;
+}
+
+async function setDays(){
+    let days = await pool.query('SELECT * FROM theDays')
+    return days.rows
 }
 
 async function getTheDays(the_days) {
@@ -34,8 +46,8 @@ async function getTheDays(the_days) {
 };
 
 
-async function setDays(checkbox){
-    
+async function selectingDays(checkbox){
+
 
 }
 
@@ -51,6 +63,7 @@ async function reset(){
         showTheWaiters,
         reset,
         getTheDays,
-        setDays
+        setDays,
+        selectingDays
     }
 };

@@ -18,7 +18,7 @@
             <form action="/waiters/:username" method="POST">
 
                 <label for="fname">Employee's Name</label>
-                <input type="text" id="name" name="waiterName" placeholder="Your name..">
+                <input type="text" id="name" name="name" placeholder="Your name..">
 
                 {{!-- <label for="lname">Employee's Id</label>
             <input type="text" id="lname" name="Employee_Id" placeholder="Employee Id.."><br> --}}
@@ -27,7 +27,9 @@
             </form><br>
             
             <ul class="display">
-               
+               {{#each enteredName}}
+      {{names}}
+     {{/each}}
             </ul>
         </div>
     </div>
