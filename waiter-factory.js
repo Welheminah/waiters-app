@@ -1,31 +1,20 @@
 module.exports = function coffeeShop(pool){
 
 
-   async function waiterName(waiter){
-    try {
-        let name = waiter.charAt(0).trim().toUpperCase() + waiter.toLowerCase().slice(1);
-        // await pool.query('INSERT INTO waiters(names)VALUES($1)', [name])
-        var dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [name]);
-        if(dbName.rowCount === 0){
-            // await pool.query('INSERT INTO waiters(names) VALUES($1)', [name])
-            console.log('You are not recognized');
-            return; 
-          
-   }
-   else {
-       return 'system recognizes you';
-   }
-    } catch (error) { 
-        // console.log(error)
-    }
-}
+   async function waiterName(user){
+    var name = user.charAt(0).toUpperCase() + user.toLowerCase().slice(1);
+    var test = regex.test(name);
 
-   
-   async function showWaiter(){
-       let oneWaiter = await pool.query('SELECT *  FROM waiters')
-    
-      return oneWaiter.rowCount;
-       
+    if (!test) {
+        return "Invalid"
+    }
+    // let name = waiter;
+//    let name = waiter.trim().charAt(0).toUpperCase().toLowerCase().slice(1);
+
+   var dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [name]);
+   if(dbName.rowCount === 0){
+       await pool.query('INSERT INTO waiters(names) VALUES($1)', [name])
+   }
    }
 
 
@@ -59,7 +48,7 @@ async function reset(){
 
     return{
         waiterName,
-        showWaiter,
+        // showWaiter,
         showTheWaiters,
         reset,
         getTheDays,

@@ -58,15 +58,16 @@ const shedule = coffeeShop(pool);
 
 app.get("/", async function(req, res){
     let user = req.params.name;
-    let name = await shedule.waiterName(user);
+    // let name = await shedule.waiterName(user);
     let hardCode = "Moipone";
     // console.log(name)
     res.render("index",
-    {enteredName: name});
+    {enteredName: user});
     
   });
 
-  
+
+
 app.post("/waiter",async function(req, res){
     let input = req.body.waiterName;
     let checkBoxes = req.body.days;
@@ -77,21 +78,39 @@ app.post("/waiter",async function(req, res){
 
 app.get("/waiters/:username",async function(req, res){
     let user = req.params.name;
-    let name = await shedule.waiterName(user);
-    console.log(name)
+    // let name = await shedule.waiterName(user);
+    // console.log(name)
     res.render("days",
-    {theName: name});
+    {theName: user});
 
   });
 
+
+
 app.post("/waiters/:username",async function(req, res){
-    let input = req.params.waiterName;
+    let input = req.params.name;
     let checkBoxes = req.body.days;
     // console.log(input)
-    await shedule.waiterName(input, checkBoxes);
-    
+    // if(input && input !== ''){
+    //     await pool.query('INSERT INTO waiters (names) values($1)',[input])
+    // }
+    await shedule.waiterName(input,);
+    console.log(input)
     res.redirect('index')
 });
+
+// app.post("/waiters",async function(req, res){
+//     let input = req.body.waiterName;
+//     let checkBoxes = req.body.days;
+//     let dbName = await pool.query('SELECT names FROM waiters WHERE names = $1', [input]);
+//     if(dbName === 0){
+//         await pool.query('INSERT INTO waiters (names) values($1)',[input])
+//     }
+//     // console.log(req.body.days);
+    
+//     res.redirect('/')
+// });
+
 
 const PORT = process.env.PORT || 3018;
 

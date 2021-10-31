@@ -1,19 +1,20 @@
 create table waiters(
-    id serial primary key,
-    names text not null
+    id serial not null,
+    names text not null primary key,
+    password TEXT NOT NULL
 );
 
 create table theDays(
-    id serial primary key,
-    the_days text not null
+    id serial not null,
+    the_days text not null primary key
 );
 
 create table admin_access(
     id serial not null primary key,
-    waiterName int not null,
-    days int not null,
-    foreign key(waiterName) references waiters(id),
-    foreign key(days) references theDays(id)
+    waiterName text not null,
+    days text not null,
+    foreign key(waiterName) references waiters(names),
+    foreign key(days) references theDays(the_days)
 );
 
 INSERT INTO theDays(the_days) VALUES ('Monday');

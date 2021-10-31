@@ -1,11 +1,11 @@
 create table waiters(
     id serial not null primary key,
-    names text not null
+    names varchar(100) not null
 );
 
 create table theDays(
     id serial not null primary key,
-    the_days text not null
+    the_days varchar(100) not null
 );
 
 create table managers_access(
