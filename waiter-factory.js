@@ -3,11 +3,7 @@ module.exports = function coffeeShop(pool){
 
    async function waiterName(user){
     var name = user.charAt(0).toUpperCase() + user.toLowerCase().slice(1);
-    var test = regex.test(name);
-
-    if (!test) {
-        return "Invalid"
-    }
+    
     // let name = waiter;
 //    let name = waiter.trim().charAt(0).toUpperCase().toLowerCase().slice(1);
 
@@ -18,8 +14,14 @@ module.exports = function coffeeShop(pool){
    }
 
 
+   async function showWaiter(){
+    dbName = await pool.query ('SELECT * FROM waiters')
+    return dbName.rows;
+    
+   }
+
    async function showTheWaiters(waiter){
-    let displayWaiter = await pool.query('SELECT *  FROM waiters WHERE names = $1', [waiter])
+    let displayWaiter = await pool.query("SELECT *  FROM waiters WHERE names = '$1'", [waiter])
     // console.log(displayWaiter)
     return displayWaiter.rows;
 }
@@ -48,7 +50,7 @@ async function reset(){
 
     return{
         waiterName,
-        // showWaiter,
+        showWaiter,
         showTheWaiters,
         reset,
         getTheDays,

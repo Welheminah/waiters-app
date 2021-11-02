@@ -56,46 +56,44 @@ const pool = new Pool({
 const shedule = coffeeShop(pool);
 
 
-app.get("/", async function(req, res){
-    let user = req.params.name;
-    // let name = await shedule.waiterName(user);
-    let hardCode = "Moipone";
-    // console.log(name)
-    res.render("index",
-    {enteredName: user});
-    
-  });
+app.get("/", async function (req, res) {
+    res.render("index");
+});
 
+app.post("/", async function (req, res) {
+    let waiterName = req.body.name;
+    res.redirect("/waiters/" + waiterName)
+});
 
-
-app.post("/waiter",async function(req, res){
-    let input = req.body.waiterName;
+app.post("/waiter", async function (req, res) {
     let checkBoxes = req.body.days;
-    console.log(req.body.days);
-    
+    // console.log(checkBoxes);
+
     res.redirect('/')
 });
 
-app.get("/waiters/:username",async function(req, res){
-    let user = req.params.name;
-    // let name = await shedule.waiterName(user);
-    // console.log(name)
-    res.render("days",
-    {theName: user});
+app.get("/waiters/:username", async function (req, res) {
+    let user = req.params.username;
+    let name = await shedule.waiterName(user);
+    let renderName = await shedule.showWaiter();
+    console.log(renderName)
+    res.render("days", {enteredName: renderName});
 
-  });
+});
 
 
 
-app.post("/waiters/:username",async function(req, res){
-    let input = req.params.name;
+app.post("/waiters/:username", async function (req, res) {
+    let input = req.params.username;
     let checkBoxes = req.body.days;
+    let renderName = await shedule.showWaiter();
     // console.log(input)
     // if(input && input !== ''){
     //     await pool.query('INSERT INTO waiters (names) values($1)',[input])
     // }
-    await shedule.waiterName(input,);
-    console.log(input)
+    await shedule.waiterName(input);
+
+    // console.log(input)
     res.redirect('index')
 });
 
@@ -107,7 +105,7 @@ app.post("/waiters/:username",async function(req, res){
 //         await pool.query('INSERT INTO waiters (names) values($1)',[input])
 //     }
 //     // console.log(req.body.days);
-    
+
 //     res.redirect('/')
 // });
 

@@ -97,6 +97,10 @@ input:checked {
  
 }
 
+.main2 h3{
+  color: white;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
